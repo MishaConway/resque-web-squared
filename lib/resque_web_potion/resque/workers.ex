@@ -1,10 +1,13 @@
 defmodule ResqueWebPotion.Resque.Workers do
+  use ResqueWebPotion.Redis.Namespacing
+  use ResqueWebPotion.Redis.Client
+
   def workers do
-    ResqueWebPotion.Redis.Sets.scan client(), "resque:workers"
+    ResqueWebPotion.Redis.Sets.scan client(), namespace("workers")
   end
 
   def working do
-    working_map
+    working_map()
     |> Map.keys
     |> Enum.map(fn(worker_id) ->
       segments = worker_id |> String.split(":")
@@ -27,7 +30,7 @@ defmodule ResqueWebPotion.Resque.Workers do
 
 
   def working_map  do
-    keys = workers |> Enum.map(fn(id) -> "worker:#{id}" end)
+    keys = workers() |> Enum.map(fn(id) -> "worker:#{id}" end)
     values = ResqueWebPotion.Redis.Mget.mget_in_batches client(), namespace_list(keys), 100
     IO.puts "values are #{:i.i values}"
 
@@ -35,7 +38,7 @@ defmodule ResqueWebPotion.Resque.Workers do
     keys
     |> Enum.with_index
     |> Enum.map( fn {key, i} -> {key, Enum.at(values, i)} end )
-    |> Enum.reject(fn{k,v} -> nil == v end )
+    |> Enum.reject(fn{_k,v} -> nil == v end )
     |> Enum.into(%{})
   end
 end
