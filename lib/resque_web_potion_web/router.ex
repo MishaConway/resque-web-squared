@@ -17,6 +17,10 @@ defmodule ResqueWebPotionWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/queues", QueuesController, :index
+    get "/working", WorkingController, :index
+    get "/workers", WorkersController, :index
+    get "/failed", FailedController, :index
   end
 
   # Other scopes may use custom stacks.

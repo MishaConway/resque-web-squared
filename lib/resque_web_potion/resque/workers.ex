@@ -32,9 +32,6 @@ defmodule ResqueWebPotion.Resque.Workers do
   def working_map  do
     keys = workers() |> Enum.map(fn(id) -> "worker:#{id}" end)
     values = ResqueWebPotion.Redis.Mget.mget_in_batches client(), namespace_list(keys), 100
-    IO.puts "values are #{:i.i values}"
-
-
     keys
     |> Enum.with_index
     |> Enum.map( fn {key, i} -> {key, Enum.at(values, i)} end )
