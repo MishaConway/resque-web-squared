@@ -1,4 +1,9 @@
 defmodule ResqueWebPotion.Redis.Sets do
+  def size conn, key do
+    {:ok, size} = Redix.command(conn, ["SSCARD", key])
+    size
+  end
+
   def scan conn, key do
     scan_ex conn, key, [], nil
   end

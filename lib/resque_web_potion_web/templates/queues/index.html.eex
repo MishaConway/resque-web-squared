@@ -1,3 +1,9 @@
-<h2>Queues</h2>
+<h4 class="sub-header">Queues</h4>
 
-<%= queues @conn %>
+<div class="data">
+  <%= for {queue_name,queue,classes} <- queues(@conn) do %>
+    <div>
+      <span class="<%= classes %>"><%= link queue_name, to: "/queues/#{queue}" %></span>
+    </div>
+  <% end %>
+</div>
