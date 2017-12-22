@@ -1,5 +1,12 @@
 <h4 class="sub-header">Failures</h4>
-<small><%= start @conn %>-<%= last @conn %> of <%= size @conn %></small>
+<small>
+  <%= if start(@conn) == last(@conn) do %>
+    <%= start @conn %> 
+  <% else %>
+    <%= start @conn %>-<%= last @conn %>
+  <% end %>
+  of <%= size @conn %>
+</small>
 
 <div class="data">
   <%= for failure <- failures(@conn) do %>
@@ -20,4 +27,7 @@
   <% end %>
 </div>
 
-<%= render ResqueWebPotionWeb.SharedView, "pagination.html", assigns %>
+<%= render ResqueWebPotionWeb.SharedView, "pagination.html",
+  pages: pagination_pages(@conn),
+  current_page: page(@conn),
+  num_pages: num_pages(@conn)  %>

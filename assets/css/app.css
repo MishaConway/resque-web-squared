@@ -147,6 +147,7 @@ body .data p{
   -webkit-box-shadow: none;
           box-shadow: none;
   cursor: default;
+  color: indigo;
 }
 
 .zui-pager .i-chevron-left,
@@ -168,6 +169,10 @@ body .data p{
   border-width: 1px 1px 0 0;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+}
+
+.zui-pager .i-chevron-left:hover, .zui-pager .i-chevron-right:hover{
+  border-color: orangered;
 }
 
 .i-caret-down {

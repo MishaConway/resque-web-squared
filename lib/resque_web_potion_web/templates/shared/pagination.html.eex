@@ -1,3 +1,34 @@
+<div class="zui-pager">
+	<ol class="btn-group">
+    <li class="btn-group__item <%= if 1 == assigns[:current_page], do: "invisible" %>">
+      <%= link to: "/failed/page/#{assigns[:current_page]-1}" do %>
+        <i class="i-chevron-left"></i>
+      <% end %>
+		</li>
+    <%= for page <- assigns[:pages] do %>
+      <li class="btn-group__item">
+        <button class="btn btn--basic <%= if page == assigns[:current_page], do: "current"%>"
+        <%= if "..." == page, do: "disabled=\"disabled\" style=\"display: none;\""%>>
+          <%= if page == assigns[:current_page] do %>
+            <%= page %>
+          <% else %>
+            <%= if "..." == page do %>
+              <span><%= page %></span>
+            <% else %>
+              <span><%= link page, to: "/failed/page/#{page}" %></span>
+            <% end %>
+          <% end %>
+        </button>
+      </li>
+    <% end %>
+    <li class="btn-group__item <%= if assigns[:current_page] == assigns[:num_pages], do: "invisible"%>">
+      <%= link to: "/failed/page/#{assigns[:current_page]+1}" do %>
+        <i class="i-chevron-right"></i>
+      <% end %>
+		</li>
+  </ol>
+</div>
+
 
 
 <div class="zui-pager">
@@ -34,3 +65,5 @@
 		</li>
 	</ol>
 </div>
+
+<%= :i.i assigns[:pages] %>

@@ -20,7 +20,9 @@ defmodule ResqueWebPotionWeb.Router do
     get "/queues", QueuesController, :index
     get "/working", WorkingController, :index
     get "/workers", WorkersController, :index
+
     get "/failed", FailedController, :index
+    get "/failed/page/:page", FailedController, :page
   end
 
   # Other scopes may use custom stacks.
