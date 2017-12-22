@@ -8,7 +8,7 @@ defmodule ResqueWebPotion.Resque.Failed do
 
   def failed page, page_size do
     start = page_size * (page - 1)
-    last = start + page_size
+    last = start + page_size - 1
     ResqueWebPotion.Redis.Lists.range(client(), namespace("failed"), start, last)
     |> Enum.map(fn(i) ->
       Poison.decode! i

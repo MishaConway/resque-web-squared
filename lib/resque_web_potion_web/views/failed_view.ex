@@ -18,11 +18,11 @@ defmodule ResqueWebPotionWeb.FailedView do
   end
 
   def start conn do
-    page_size(conn) * (page(conn) - 1)
+    page_size(conn) * (page(conn) - 1) + 1
   end
 
   def last conn do
-    start(conn) + page_size(conn)
+    start(conn) + page_size(conn) - 1
   end
 
   def failures conn do

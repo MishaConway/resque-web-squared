@@ -3,20 +3,18 @@
 
 <div class="data">
   <%= for failure <- failures(@conn) do %>
-    <div>
+    <div class="row">
         <p>
-          <%= get_in(failure, ["payload", "class"]) %> on <%= get_in failure, ["queue"] %>
+          <%= get_in(failure, ["payload", "class"]) %> on <%= link get_in(failure, ["queue"]), to: "/queues/#{get_in(failure, ["queue"])}" %>
+          at
           <%= get_in failure, ["failed_at"] %>
         </p>
-
-
-
-
-      <div>backtrace: <%= get_in failure, ["backtrace"] %></div>
-      <div>error: <%= get_in failure, ["error"] %></div>
-      <div>exception: <%= get_in failure, ["exception"] %></div>
-      <div>worker: <%= get_in failure, ["worker"] %></div>
-      <div>args: <%= :i.i get_in(failure, ["payload", "args"]) %></div>
+        <p class="hide">args: <%= :i.i get_in(failure, ["payload", "args"]) %></p>
+        <p>
+          <%= link get_in(failure, ["exception"]), to: "#" %> exception with error
+          <%= get_in failure, ["error"] %>
+        </p>
+        <p class="hide">backtrace: <%= get_in failure, ["backtrace"] %></p>
 
     </div>
   <% end %>
