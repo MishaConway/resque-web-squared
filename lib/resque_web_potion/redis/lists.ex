@@ -13,11 +13,13 @@ defmodule ResqueWebPotion.Redis.Lists do
   end
 
   def range conn, key, start, stop do
-    Redix.command(conn, ["lrange", key, start, stop])
+    {:ok, items} = Redix.command(conn, ["lrange", key, start, stop])
+    items
   end
 
   defp index conn, key, i do
-    Redix.command(conn, ["lindex", key, i])
+    {:ok, item} = Redix.command(conn, ["lindex", key, i])
+    item
   end
 
 

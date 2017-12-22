@@ -50,3 +50,11 @@ nav a{
   text-transform: none;
   padding-bottom: 2px;
 }
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
