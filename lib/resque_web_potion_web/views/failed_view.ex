@@ -43,7 +43,7 @@ defmodule ResqueWebPotionWeb.FailedView do
   end
 
   def accumulate_pagination_list conn, min, max, 1, _accumulated do
-    if (min > 3) do
+    if (min >= 3) do
       accumulate_pagination_list conn, min, max, min, [1, "..."]
     else
       accumulate_pagination_list conn, min, max, min, [1]

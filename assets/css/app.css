@@ -105,15 +105,19 @@ body .data p{
   height: 40px;
   float: left;
 }
-.zui-pager .btn-group__item .btn {
+.zui-pager .btn-group__item .btn{
   margin: 0;
   padding: .5em 1em;
   border: 0;
   font-weight: 300;
   background-color: transparent;
-  /*-webkit-box-shadow: inset 0px -2px 0px 0px #bbb;
-          box-shadow: inset 0px -2px 0px 0px #bbb;*/
+}
+
+.zui-pager .btn-group__item .btn, .zui-pager .btn-group__item .btn span a {
   color: #bbb;
+  font-weight: 300;
+  margin: 0;
+
 }
 
 
@@ -191,7 +195,7 @@ body .data p{
   padding-right: 20px !important;
   padding-left: 5px !important;
 }
-.small span:nth-of-type(1) {
+.small span:nth-of-type(1){
   font-weight: bold;
   color: #6495ed;
 }
